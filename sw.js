@@ -1,5 +1,5 @@
 // offline cache + receive files shared from other apps (Android «Поделиться»)
-const VER = "gcv-1";
+const VER = "gcv-2";
 const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(VER).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VER && k !== "gcv-shared").map(k => caches.delete(k))))); self.clients.claim(); });

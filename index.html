@@ -982,6 +982,7 @@ function loadIdx(i, keepView){ files.forEach((f,j)=>f.on=j===i); showSelected(ke
 function loadCombined(keepView){ files.forEach(f=>f.on=true); showSelected(keepView); }
 function clearView(msg){
   P=null; combined=false; setPlaying(false);
+  selLine=-1; curLine=-1; selInfoLine=-2; $("selInfo").style.display="none";
   $("fname").textContent= msg? "ничего не отмечено" : "файл не открыт"; $("fname").classList.add("muted");
   $("drop").style.display= msg? "none" : "";
   $("bReload").disabled=true; $("legend").style.display="none"; $("pos").textContent=""; $("time").textContent="";
@@ -997,7 +998,7 @@ function setProgram(prog, title, canReload, t0, keepView){
   $("drop").style.display="none";
   $("bReload").disabled = !canReload;
   document.title = title+" — Просмотр G-кода";
-  selLine=-1; curLine=-1; lastCurLine=-2; simT=P.total; setPlaying(false);
+  selLine=-1; curLine=-1; lastCurLine=-2; simT=P.total; setPlaying(false); selInfoLine=-2;
   codeBox.scrollTop=0; $("codeSpacer").style.height=(P.lines.length*LH)+"px";
   $("codeInfo").textContent = `${fmtN(P.lines.length,0)} строк · ${Math.round(performance.now()-t0)} мс`;
   renderStats(); renderChecks(); renderCode(); if(typeof renderTimeOut==="function") renderTimeOut();
