@@ -1,0 +1,22 @@
+{
+  "name": "Просмотр G-кода",
+  "short_name": "G-код",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#14171c",
+  "theme_color": "#1b1f26",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ],
+  "share_target": {
+    "action": "./share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {"files": [{"name": "files", "accept": ["*/*", ".tap", ".nc", ".cnc", ".ngc", ".gcode", ".txt"]}]}
+  },
+  "file_handlers": [
+    {"action": "./", "accept": {"text/plain": [".tap", ".nc", ".cnc", ".ngc", ".gcode", ".gc", ".iso", ".mpf", ".ncc", ".txt"]}}
+  ]
+}
