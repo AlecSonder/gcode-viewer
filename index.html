@@ -1440,6 +1440,12 @@ if(location.protocol==="https:"||location.hostname==="localhost"){
   if("launchQueue" in window) launchQueue.setConsumer(async p=>{ if(!p.files||!p.files.length) return; const list=[]; for(const h of p.files) list.push({file:await h.getFile(), handle:h}); addFiles(list); });
 }
 
+// programs packed into this page by make_tap_preview.py
+if(Array.isArray(window.__EMBED) && window.__EMBED.length){
+  for(const e of window.__EMBED) files.push({name:e.name, text:e.text, handle:null, on:true, c:FC[colorNext++%FC.length]});
+  showSelected();
+}
+
 requestAnimationFrame(loop);
 // test hook
 window.__gcv = {parse, load:(name,text)=>{ files.push({name,text,on:true,c:FC[colorNext++%FC.length]}); loadIdx(files.length-1); }, combine:()=>loadCombined(), get P(){return P;}, get simT(){return simT;}};
